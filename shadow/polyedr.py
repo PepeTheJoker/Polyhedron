@@ -171,7 +171,7 @@ class Polyedr:
             if e.beg.y < 2 and e.fin.y < 2:
                 self.length += (
                     sqrt((e.fin - e.beg).dot(e.fin - e.beg)) *
-                    sum([g.length for g in e.gaps])
+                    sum([g.length() for g in e.gaps])
                 )
 
     # Метод изображения полиэдра
