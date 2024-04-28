@@ -4,7 +4,7 @@ from math import sqrt
 from shadow.polyedr import Polyedr
 
 
-class TestPolyedr(unittest.TestCase):
+class TestPyramid(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
