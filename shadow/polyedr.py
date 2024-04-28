@@ -1,4 +1,4 @@
-from math import pi
+from math import pi, sqrt
 from functools import reduce
 from operator import add
 from common.r3 import R3
@@ -23,6 +23,10 @@ class Segment:
         if other.fin < self.fin:
             self.fin = other.fin
         return self
+
+    # Длина отрезка
+    def length(self):
+        return self.fin - self.beg
 
     # Разность отрезков
     # Разность двух отрезков всегда является списком из двух отрезков!
@@ -127,6 +131,7 @@ class Polyedr:
 
         # списки вершин, рёбер и граней полиэдра
         self.vertexes, self.edges, self.facets = [], [], []
+        self.length = 0
 
         # список строк файла
         with open(file) as f:
@@ -159,11 +164,19 @@ class Polyedr:
                     # задание самой грани
                     self.facets.append(Facet(vertexes))
 
+        # Вычисление характеристики
+        for e in self.edges:
+            for f in self.facets:
+                e.shadow(f)
+            if e.beg.y < 2 and e.fin.y < 2:
+                self.length += (
+                    sqrt(e.fin - e.beg).dot(e.fin - e.beg) *
+                    sum([g.length for g in e.gaps])
+                )
+
     # Метод изображения полиэдра
     def draw(self, tk):  # pragma: no cover
         tk.clean()
         for e in self.edges:
-            for f in self.facets:
-                e.shadow(f)
             for s in e.gaps:
                 tk.draw_line(e.r3(s.beg), e.r3(s.fin))
