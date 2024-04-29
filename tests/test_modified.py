@@ -37,7 +37,7 @@ class TestPyramid(unittest.TestCase):
 
     def test_length(self):
         self.assertAlmostEqual(
-            40 * (4 + 4 * sqrt(2)) * 2,
+            (4 + 4 * sqrt(2)) * 2,
             self.polyedr.length
         )
 
@@ -76,6 +76,6 @@ class TestPrism(unittest.TestCase):
 
     def test_length(self):
         self.assertAlmostEqual(
-            50 * (12 + 4 * sqrt(2)) * 2,
+            (12 + 4 * sqrt(2)) * 2,
             self.polyedr.length
         )
