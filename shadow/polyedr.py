@@ -171,7 +171,7 @@ class Polyedr:
             if e.beg.y < 2 and e.fin.y < 2:
                 v = e.fin - e.beg
                 v = sqrt(v.x * v.x + v.y * v.y)
-                self.length += v * sum([s.length() for s in e.gaps])
+                self.length += v * sum([s.length() for s in e.gaps]) / c
 
     # Метод изображения полиэдра
     def draw(self, tk):  # pragma: no cover
